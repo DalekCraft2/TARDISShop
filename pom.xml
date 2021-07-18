@@ -141,7 +141,7 @@
             <!-- TARDIS -->
             <groupId>me.eccentric_nz.TARDIS</groupId>
             <artifactId>TARDIS</artifactId>
-            <version>4.7.3-SNAPSHOT</version>
+            <version>4.7.5-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
