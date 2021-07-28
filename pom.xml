@@ -78,7 +78,7 @@
             <!-- TARDISWeepingAngels -->
             <groupId>me.eccentric_nz.tardisweepingangels</groupId>
             <artifactId>TARDISWeepingAngels</artifactId>
-            <version>3.4.0-SNAPSHOT</version>
+            <version>3.4.1-SNAPSHOT</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
