@@ -21,13 +21,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class TardisShopDatabase {
+public class TARDISShopDatabase {
 
-    private static final TardisShopDatabase INSTANCE = new TardisShopDatabase();
+    private static final TARDISShopDatabase INSTANCE = new TARDISShopDatabase();
     public Connection connection = null;
     public Statement statement = null;
 
-    public static synchronized TardisShopDatabase getInstance() {
+    public static synchronized TARDISShopDatabase getInstance() {
         return INSTANCE;
     }
 

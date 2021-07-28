@@ -38,13 +38,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TardisShopCommand extends TARDISCompleter implements CommandExecutor, TabCompleter {
+public class TARDISShopCommand extends TARDISCompleter implements CommandExecutor, TabCompleter {
 
-    private final TardisShopPlugin plugin;
+    private final TARDISShopPlugin plugin;
     private final ImmutableList<String> ROOT_SUBS = ImmutableList.of("add", "remove", "update");
     private final ArrayList<String> ITEM_SUBS;
 
-    public TardisShopCommand(TardisShopPlugin plugin) {
+    public TARDISShopCommand(TARDISShopPlugin plugin) {
         this.plugin = plugin;
         ITEM_SUBS = new ArrayList<>(this.plugin.getItemsConfig().getKeys(false));
     }
@@ -81,7 +81,7 @@ public class TardisShopCommand extends TARDISCompleter implements CommandExecuto
                 // get shop items
                 ResultSetUpdateShop resultSetUpdateShop = new ResultSetUpdateShop(plugin);
                 if (resultSetUpdateShop.getAll()) {
-                    for (TardisShopItem item : resultSetUpdateShop.getShopItems()) {
+                    for (TARDISShopItem item : resultSetUpdateShop.getShopItems()) {
                         String lookup = item.getItem().replace(" ", "_").toLowerCase();
                         double cost = plugin.getItemsConfig().getDouble(lookup);
                         if (cost != item.getCost()) {
@@ -110,7 +110,7 @@ public class TardisShopCommand extends TARDISCompleter implements CommandExecuto
                     return true;
                 }
                 double cost = plugin.getItemsConfig().getDouble(name);
-                TardisShopItem item = new InsertShopItem(plugin).addNamedItem(TARDISStringUtils.capitalise(args[1]), cost);
+                TARDISShopItem item = new InsertShopItem(plugin).addNamedItem(TARDISStringUtils.capitalise(args[1]), cost);
                 plugin.getSettingItem().put(player.getUniqueId(), item);
                 player.sendMessage(plugin.getPluginName() + "Click the " + plugin.getBlockMaterial().toString() + " block to update the database record.");
                 return true;

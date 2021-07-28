@@ -16,8 +16,8 @@
  */
 package me.eccentric_nz.tardisshop.database;
 
-import me.eccentric_nz.tardisshop.TardisShopItem;
-import me.eccentric_nz.tardisshop.TardisShopPlugin;
+import me.eccentric_nz.tardisshop.TARDISShopItem;
+import me.eccentric_nz.tardisshop.TARDISShopPlugin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,8 +26,8 @@ import java.sql.SQLException;
 
 public class InsertShopItem {
 
-    private final TardisShopPlugin plugin;
-    private final TardisShopDatabase service = TardisShopDatabase.getInstance();
+    private final TARDISShopPlugin plugin;
+    private final TARDISShopDatabase service = TARDISShopDatabase.getInstance();
     private final Connection connection = service.getConnection();
 
     /**
@@ -36,11 +36,11 @@ public class InsertShopItem {
      *
      * @param plugin an instance of the main plugin class
      */
-    public InsertShopItem(TardisShopPlugin plugin) {
+    public InsertShopItem(TARDISShopPlugin plugin) {
         this.plugin = plugin;
     }
 
-    public TardisShopItem addNamedItem(String item, double cost) {
+    public TARDISShopItem addNamedItem(String item, double cost) {
         PreparedStatement preparedStatement = null;
         ResultSet idResultSet = null;
         try {
@@ -50,7 +50,7 @@ public class InsertShopItem {
             preparedStatement.executeUpdate();
             idResultSet = preparedStatement.getGeneratedKeys();
             int id = (idResultSet.next()) ? idResultSet.getInt(1) : -1;
-            return new TardisShopItem(id, item, null, cost);
+            return new TARDISShopItem(id, item, null, cost);
         } catch (SQLException e) {
             plugin.debug("Insert error for items! " + e.getMessage());
         } finally {

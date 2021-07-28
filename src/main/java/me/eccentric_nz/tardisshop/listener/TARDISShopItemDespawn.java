@@ -16,17 +16,17 @@
  */
 package me.eccentric_nz.tardisshop.listener;
 
-import me.eccentric_nz.tardisshop.TardisShopPlugin;
+import me.eccentric_nz.tardisshop.TARDISShopPlugin;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemDespawnEvent;
 import org.bukkit.persistence.PersistentDataType;
 
-public class TardisShopItemDespawn implements Listener {
+public class TARDISShopItemDespawn implements Listener {
 
-    private final TardisShopPlugin plugin;
+    private final TARDISShopPlugin plugin;
 
-    public TardisShopItemDespawn(TardisShopPlugin plugin) {
+    public TARDISShopItemDespawn(TARDISShopPlugin plugin) {
         this.plugin = plugin;
     }
 

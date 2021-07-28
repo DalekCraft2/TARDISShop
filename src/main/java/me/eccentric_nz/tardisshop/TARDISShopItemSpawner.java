@@ -27,15 +27,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.Vector;
 
-public class TardisShopItemSpawner {
+public class TARDISShopItemSpawner {
 
-    private final TardisShopPlugin plugin;
+    private final TARDISShopPlugin plugin;
 
-    public TardisShopItemSpawner(TardisShopPlugin plugin) {
+    public TARDISShopItemSpawner(TARDISShopPlugin plugin) {
         this.plugin = plugin;
     }
 
-    public void setItem(Location location, TardisShopItem what) {
+    public void setItem(Location location, TARDISShopItem what) {
         String toEnum = TARDISStringUtils.toEnumUppercase(what.getItem());
         try {
             ShopItem shopItem = ShopItem.valueOf(toEnum);

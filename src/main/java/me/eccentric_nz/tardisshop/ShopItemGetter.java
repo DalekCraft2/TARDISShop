@@ -27,7 +27,7 @@ import org.bukkit.inventory.ItemStack;
 public class ShopItemGetter {
 
     public static ItemStack getTwaItem(ShopItem item) {
-        if (TardisShopPlugin.isTwaEnabled()) {
+        if (TARDISShopPlugin.isTwaEnabled()) {
             // get TARDISWeepingAngels API
             TARDISWeepingAngelsAPI weepingAngelsApi = TARDISAngelsAPI.getAPI(TARDIS.plugin);
             if (item.getMaterial() == Material.BONE) {
@@ -45,14 +45,14 @@ public class ShopItemGetter {
 
     public static ItemStack getSeedItem(ShopItem item) {
         String s = item.toString().replace("_SEED", "");
-        return TardisShopPlugin.getTardisApi().getTARDISSeedItem(s);
+        return TARDISShopPlugin.getTardisApi().getTARDISSeedItem(s);
     }
 
     public static ItemStack getShapeItem(ShopItem item, Player player) {
-        return TardisShopPlugin.getTardisApi().getTARDISShapeItem(item.getDisplayName(), player);
+        return TARDISShopPlugin.getTardisApi().getTARDISShapeItem(item.getDisplayName(), player);
     }
 
     public static ItemStack getBlueprintItem(ShopItem item, Player player) {
-        return TardisShopPlugin.getTardisApi().getTARDISBlueprintItem(item.toString(), player);
+        return TARDISShopPlugin.getTardisApi().getTARDISBlueprintItem(item.toString(), player);
     }
 }

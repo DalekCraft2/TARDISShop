@@ -39,11 +39,11 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class TardisShopItemInteract implements Listener {
+public class TARDISShopItemInteract implements Listener {
 
-    private final TardisShopPlugin plugin;
+    private final TARDISShopPlugin plugin;
 
-    public TardisShopItemInteract(TardisShopPlugin plugin) {
+    public TARDISShopItemInteract(TARDISShopPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -59,9 +59,9 @@ public class TardisShopItemInteract implements Listener {
                 Player player = event.getPlayer();
                 UUID uuid = player.getUniqueId();
                 if (plugin.getSettingItem().containsKey(uuid)) {
-                    TardisShopItem item = plugin.getSettingItem().get(uuid);
+                    TARDISShopItem item = plugin.getSettingItem().get(uuid);
                     Location drop = location.clone().add(0.5d, 1.05d, 0.5d);
-                    new TardisShopItemSpawner(plugin).setItem(drop, item);
+                    new TARDISShopItemSpawner(plugin).setItem(drop, item);
                     // update location in database
                     new UpdateShopItem(plugin).addLocation(location.toString(), item.getId());
                     player.sendMessage(plugin.getPluginName() + "Item location added to database!");
@@ -83,7 +83,7 @@ public class TardisShopItemInteract implements Listener {
                     // is it a shop block?
                     ResultSetShopItem resultSetShopItem = new ResultSetShopItem(plugin);
                     if (resultSetShopItem.itemFromBlock(location.toString())) {
-                        TardisShopItem item = resultSetShopItem.getShopItem();
+                        TARDISShopItem item = resultSetShopItem.getShopItem();
                         String message;
                         // do they have sufficient credit?
                         if (player.hasPermission("tardis.admin") && plugin.getConfig().getBoolean("tardis_admin_free")) {

@@ -19,11 +19,11 @@ package me.eccentric_nz.tardisshop;
 import me.eccentric_nz.TARDIS.TARDIS;
 import me.eccentric_nz.TARDIS.api.TardisAPI;
 import me.eccentric_nz.TARDIS.files.TARDISFileCopier;
-import me.eccentric_nz.tardisshop.database.TardisShopDatabase;
-import me.eccentric_nz.tardisshop.listener.TardisShopItemBreak;
-import me.eccentric_nz.tardisshop.listener.TardisShopItemDespawn;
-import me.eccentric_nz.tardisshop.listener.TardisShopItemExplode;
-import me.eccentric_nz.tardisshop.listener.TardisShopItemInteract;
+import me.eccentric_nz.tardisshop.database.TARDISShopDatabase;
+import me.eccentric_nz.tardisshop.listener.TARDISShopItemBreak;
+import me.eccentric_nz.tardisshop.listener.TARDISShopItemDespawn;
+import me.eccentric_nz.tardisshop.listener.TARDISShopItemExplode;
+import me.eccentric_nz.tardisshop.listener.TARDISShopItemInteract;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -41,12 +41,12 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.*;
 
-public class TardisShopPlugin extends JavaPlugin {
+public class TARDISShopPlugin extends JavaPlugin {
 
     private static boolean twaEnabled = false;
     private static TardisAPI tardisApi;
-    private final TardisShopDatabase service = TardisShopDatabase.getInstance();
-    private final HashMap<UUID, TardisShopItem> settingItem = new HashMap<>();
+    private final TARDISShopDatabase service = TARDISShopDatabase.getInstance();
+    private final HashMap<UUID, TARDISShopItem> settingItem = new HashMap<>();
     private final Set<UUID> removingItem = new HashSet<>();
     private String pluginName;
     private Economy economy;
@@ -99,14 +99,14 @@ public class TardisShopPlugin extends JavaPlugin {
             setupEconomy();
             PluginDescriptionFile pdfFile = getDescription();
             pluginName = ChatColor.GOLD + "[" + pdfFile.getName() + "]" + ChatColor.RESET + " ";
-            pluginManager.registerEvents(new TardisShopItemInteract(this), this);
-            pluginManager.registerEvents(new TardisShopItemDespawn(this), this);
-            pluginManager.registerEvents(new TardisShopItemBreak(this), this);
-            pluginManager.registerEvents(new TardisShopItemExplode(this), this);
+            pluginManager.registerEvents(new TARDISShopItemInteract(this), this);
+            pluginManager.registerEvents(new TARDISShopItemDespawn(this), this);
+            pluginManager.registerEvents(new TARDISShopItemBreak(this), this);
+            pluginManager.registerEvents(new TARDISShopItemExplode(this), this);
             itemKey = new NamespacedKey(this, "tardis_shop_item");
             blockMaterial = Material.valueOf(getConfig().getString("block"));
             itemsConfig = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "items.yml"));
-            TardisShopCommand command = new TardisShopCommand(this);
+            TARDISShopCommand command = new TARDISShopCommand(this);
             getCommand("tardisshop").setExecutor(command);
             getCommand("tardisshop").setTabCompleter(command);
             try {
@@ -146,7 +146,7 @@ public class TardisShopPlugin extends JavaPlugin {
         return itemKey;
     }
 
-    public HashMap<UUID, TardisShopItem> getSettingItem() {
+    public HashMap<UUID, TARDISShopItem> getSettingItem() {
         return settingItem;
     }
 

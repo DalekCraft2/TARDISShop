@@ -17,8 +17,8 @@
 package me.eccentric_nz.tardisshop.database;
 
 import me.eccentric_nz.TARDIS.utility.TARDISStaticLocationGetters;
-import me.eccentric_nz.tardisshop.TardisShopItem;
-import me.eccentric_nz.tardisshop.TardisShopPlugin;
+import me.eccentric_nz.tardisshop.TARDISShopItem;
+import me.eccentric_nz.tardisshop.TARDISShopPlugin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,13 +29,13 @@ import java.util.List;
 
 public class ResultSetUpdateShop {
 
-    private final TardisShopDatabase service = TardisShopDatabase.getInstance();
+    private final TARDISShopDatabase service = TARDISShopDatabase.getInstance();
     private final Connection connection = service.getConnection();
-    private final TardisShopPlugin plugin;
+    private final TARDISShopPlugin plugin;
 
-    private List<TardisShopItem> shopItems;
+    private List<TARDISShopItem> shopItems;
 
-    public ResultSetUpdateShop(TardisShopPlugin plugin) {
+    public ResultSetUpdateShop(TARDISShopPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -49,7 +49,7 @@ public class ResultSetUpdateShop {
             if (resultSet.isBeforeFirst()) {
                 shopItems = new ArrayList<>();
                 while (resultSet.next()) {
-                    shopItems.add(new TardisShopItem(resultSet.getInt("item_id"), resultSet.getString("item"), TARDISStaticLocationGetters.getLocationFromBukkitString(resultSet.getString("location")), resultSet.getDouble("cost")));
+                    shopItems.add(new TARDISShopItem(resultSet.getInt("item_id"), resultSet.getString("item"), TARDISStaticLocationGetters.getLocationFromBukkitString(resultSet.getString("location")), resultSet.getDouble("cost")));
                 }
                 return true;
             }
@@ -71,7 +71,7 @@ public class ResultSetUpdateShop {
         }
     }
 
-    public List<TardisShopItem> getShopItems() {
+    public List<TARDISShopItem> getShopItems() {
         return shopItems;
     }
 }
