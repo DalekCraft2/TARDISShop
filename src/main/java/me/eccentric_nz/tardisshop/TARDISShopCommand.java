@@ -58,17 +58,17 @@ public class TARDISShopCommand extends TARDISCompleter implements CommandExecuto
             }
             // must be a player
             if (player == null) {
-                sender.sendMessage(plugin.getPluginName() + "Command can only be used by a player!");
+                sender.sendMessage(plugin.getMessagePrefix() + "Command can only be used by a player!");
                 return true;
             }
             // return if no arguments
             if (args.length < 1) {
-                player.sendMessage(plugin.getPluginName() + "Too few command arguments!");
+                player.sendMessage(plugin.getMessagePrefix() + "Too few command arguments!");
                 return true;
             }
             if (args[0].equalsIgnoreCase("remove")) {
                 plugin.getRemovingItem().add(player.getUniqueId());
-                player.sendMessage(plugin.getPluginName() + "Click the " + plugin.getBlockMaterial().toString() + " block to remove the database record.");
+                player.sendMessage(plugin.getMessagePrefix() + "Click the " + plugin.getBlockMaterial().toString() + " block to remove the database record.");
                 return true;
             } else if (args[0].equalsIgnoreCase("update")) {
                 // reload items.yml
@@ -100,19 +100,19 @@ public class TARDISShopCommand extends TARDISCompleter implements CommandExecuto
             }
             // need at least 2 arguments from here on
             if (args.length < 2) {
-                player.sendMessage(plugin.getPluginName() + "Too few command arguments!");
+                player.sendMessage(plugin.getMessagePrefix() + "Too few command arguments!");
                 return true;
             }
             if (args[0].equalsIgnoreCase("add")) {
                 String name = args[1].toLowerCase();
                 if (!plugin.getItemsConfig().contains(name)) {
-                    player.sendMessage(plugin.getPluginName() + "Too few command arguments!");
+                    player.sendMessage(plugin.getMessagePrefix() + "Too few command arguments!");
                     return true;
                 }
                 double cost = plugin.getItemsConfig().getDouble(name);
                 TARDISShopItem item = new InsertShopItem(plugin).addNamedItem(TARDISStringUtils.capitalise(args[1]), cost);
                 plugin.getSettingItem().put(player.getUniqueId(), item);
-                player.sendMessage(plugin.getPluginName() + "Click the " + plugin.getBlockMaterial().toString() + " block to update the database record.");
+                player.sendMessage(plugin.getMessagePrefix() + "Click the " + plugin.getBlockMaterial().toString() + " block to update the database record.");
                 return true;
             }
             return true;

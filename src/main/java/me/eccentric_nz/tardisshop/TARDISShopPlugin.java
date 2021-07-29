@@ -31,7 +31,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,16 +38,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import java.util.logging.Level;
 
 public class TARDISShopPlugin extends JavaPlugin {
 
+    public static TARDISShopPlugin plugin;
     private static boolean twaEnabled = false;
     private static TardisAPI tardisApi;
     private final TARDISShopDatabase service = TARDISShopDatabase.getInstance();
     private final HashMap<UUID, TARDISShopItem> settingItem = new HashMap<>();
     private final Set<UUID> removingItem = new HashSet<>();
-    private String pluginName;
+    private String messagePrefix;
     private Economy economy;
     private TARDIS tardis;
     private NamespacedKey itemKey;
@@ -76,6 +80,7 @@ public class TARDISShopPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        plugin = this;
         saveDefaultConfig();
         PluginManager pluginManager = getServer().getPluginManager();
         String enable = "";
@@ -97,8 +102,7 @@ public class TARDISShopPlugin extends JavaPlugin {
         }
         if (enable.isEmpty()) {
             setupEconomy();
-            PluginDescriptionFile pdfFile = getDescription();
-            pluginName = ChatColor.GOLD + "[" + pdfFile.getName() + "]" + ChatColor.RESET + " ";
+            messagePrefix = ChatColor.GOLD + "[" + getDescription().getName() + "]" + ChatColor.RESET + " ";
             pluginManager.registerEvents(new TARDISShopItemInteract(this), this);
             pluginManager.registerEvents(new TARDISShopItemDespawn(this), this);
             pluginManager.registerEvents(new TARDISShopItemBreak(this), this);
@@ -114,10 +118,10 @@ public class TARDISShopPlugin extends JavaPlugin {
                 service.setConnection(path);
                 service.createTables();
             } catch (Exception e) {
-                getServer().getConsoleSender().sendMessage(pluginName + "Connection and Tables Error: " + e);
+                getLogger().log(Level.SEVERE, "Connection and Tables Error: " + e.getMessage());
             }
         } else {
-            getServer().getConsoleSender().sendMessage(pluginName + ChatColor.RED + "This plugin requires " + enable + " to function, disabling...");
+            getLogger().log(Level.WARNING, "This plugin requires " + enable + " to function, disabling...");
             pluginManager.disablePlugin(this);
         }
     }
@@ -134,8 +138,8 @@ public class TARDISShopPlugin extends JavaPlugin {
         economy = registeredServiceProvider.getProvider();
     }
 
-    public String getPluginName() {
-        return pluginName;
+    public String getMessagePrefix() {
+        return messagePrefix;
     }
 
     public Economy getEconomy() {
@@ -164,7 +168,7 @@ public class TARDISShopPlugin extends JavaPlugin {
 
     public void debug(Object object) {
         if (getConfig().getBoolean("debug")) {
-            getServer().getConsoleSender().sendMessage("[TARDISShop Debug] " + object);
+            getLogger().log(Level.CONFIG, (String) object);
         }
     }
 

@@ -16,10 +16,13 @@
  */
 package me.eccentric_nz.tardisshop.database;
 
+import me.eccentric_nz.tardisshop.TARDISShopPlugin;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 public class TARDISShopDatabase {
 
@@ -47,14 +50,14 @@ public class TARDISShopDatabase {
             final String queryItems = "CREATE TABLE IF NOT EXISTS items (item_id INTEGER PRIMARY KEY NOT NULL, item TEXT DEFAULT '', location TEXT DEFAULT '', cost REAL DEFAULT 0)";
             statement.executeUpdate(queryItems);
         } catch (SQLException e) {
-            System.err.println("[TARDISShop] Error creating tables: " + e.getMessage());
+            TARDISShopPlugin.plugin.getLogger().log(Level.SEVERE, "Error creating tables: " + e.getMessage());
         } finally {
             try {
                 if (statement != null) {
                     statement.close();
                 }
             } catch (SQLException e) {
-                System.err.println("[TARDISShop] Error closing SQL statement: " + e.getMessage());
+                TARDISShopPlugin.plugin.getLogger().log(Level.SEVERE, "Error closing SQL statement: " + e.getMessage());
             }
         }
     }

@@ -64,7 +64,7 @@ public class TARDISShopItemInteract implements Listener {
                     new TARDISShopItemSpawner(plugin).setItem(drop, item);
                     // update location in database
                     new UpdateShopItem(plugin).addLocation(location.toString(), item.getId());
-                    player.sendMessage(plugin.getPluginName() + "Item location added to database!");
+                    player.sendMessage(plugin.getMessagePrefix() + "Item location added to database!");
                     plugin.getSettingItem().remove(uuid);
                 } else if (plugin.getRemovingItem().contains(uuid)) {
                     for (Entity entity : block.getWorld().getNearbyEntities(location, 1.0d, 2.0d, 1.0d)) {
@@ -74,9 +74,9 @@ public class TARDISShopItemInteract implements Listener {
                     }
                     // remove database record
                     if (new DeleteShopItem(plugin).removeByLocation(location.toString()) > 0) {
-                        player.sendMessage(plugin.getPluginName() + "Item removed from database");
+                        player.sendMessage(plugin.getMessagePrefix() + "Item removed from database");
                     } else {
-                        player.sendMessage(plugin.getPluginName() + "Item location not found in database!");
+                        player.sendMessage(plugin.getMessagePrefix() + "Item location not found in database!");
                     }
                     plugin.getRemovingItem().remove(uuid);
                 } else {
@@ -99,7 +99,7 @@ public class TARDISShopItemInteract implements Listener {
                             // no credit
                             message = "You have insufficient credit available to purchase this item!";
                         }
-                        player.sendMessage(plugin.getPluginName() + message);
+                        player.sendMessage(plugin.getMessagePrefix() + message);
                     }
                 }
             } else if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
