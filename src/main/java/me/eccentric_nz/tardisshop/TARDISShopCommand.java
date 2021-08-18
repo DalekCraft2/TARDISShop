@@ -50,8 +50,7 @@ public class TARDISShopCommand extends TARDISCompleter implements CommandExecuto
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, Command command, @NotNull String label, String[] args) {
-        if (command.getName().equalsIgnoreCase("tardisshop")) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
             Player player = null;
             if (sender instanceof Player) {
                 player = (Player) sender;
@@ -116,8 +115,6 @@ public class TARDISShopCommand extends TARDISCompleter implements CommandExecuto
                 return true;
             }
             return true;
-        }
-        return false;
     }
 
     @Override
