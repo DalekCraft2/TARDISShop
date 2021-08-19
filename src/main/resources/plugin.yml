@@ -12,15 +12,15 @@ dev-url: https://github.com/eccentricdevotion/TARDISShop/
 url: http://eccentricdevotion.github.io/TARDIS/
 permissions:
   tardisshop.use:
-    description: Allow players to buy items from a TARDIS Shop.
+    description: Allows a player to buy items from a TARDIS Shop.
     default: op
   tardisshop.admin:
-    description: Allow players to set up a TARDIS Shop.
+    description: Allows a player to set up a TARDIS Shop.
     default: op
 commands:
   tardisshop:
     aliases: [tshop]
-    description: Add and remove TARDISShop items.
-    usage: /<command> [add|remove|update] [item_name]
+    description: Adds and removes TARDISShop items.
+    usage: "Usage: /<command> (add|remove|update) <item>"
     permission: tardisshop.admin
-    permission-message: You don't have the permission <permission> to use this command
+    permission-message: "You need the permission '<permission>' to use this command!"
