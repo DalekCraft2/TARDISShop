@@ -7,9 +7,7 @@ api-version: 1.17
 load: POSTWORLD
 depend: [TARDIS,Vault]
 soft-depend: [TARDISWeepingAngels]
-website: http://tardisjenkins.duckdns.org:8080/job/TARDISShop/
-dev-url: https://github.com/eccentricdevotion/TARDISShop/
-url: http://eccentricdevotion.github.io/TARDIS/
+website: https://github.com/eccentricdevotion/TARDISShop/
 permissions:
   tardisshop.use:
     description: Allows a player to buy items from a TARDIS Shop.
