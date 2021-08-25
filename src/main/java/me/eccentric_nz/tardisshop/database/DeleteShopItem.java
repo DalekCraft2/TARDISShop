@@ -37,7 +37,7 @@ public class DeleteShopItem {
 
     /**
      * Deletes rows from an SQLite database table. This method builds an SQL query string from the parameters supplied
-     * and then executes the delete.
+     * and then executes the deletion.
      *
      * @param table the database table name to insert the data into.
      * @param where a {@link HashMap}{@code <}{@link String}{@code , }{@link Object}{@code >} of table fields and values to select the records to delete.

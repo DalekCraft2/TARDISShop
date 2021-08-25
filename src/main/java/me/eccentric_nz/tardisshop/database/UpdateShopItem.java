@@ -63,14 +63,14 @@ public class UpdateShopItem {
         String query = "UPDATE items SET " + updates + " WHERE " + wheres;
         try {
             preparedStatement = connection.prepareStatement(query);
-            int s = 1;
+            int i = 1;
             for (Map.Entry<String, Object> entry : data.entrySet()) {
                 if (entry.getValue() instanceof String || entry.getValue() instanceof UUID) {
-                    preparedStatement.setString(s, entry.getValue().toString());
+                    preparedStatement.setString(i, entry.getValue().toString());
                 } else if (entry.getValue() instanceof Double) {
-                    preparedStatement.setDouble(s, (Double) entry.getValue());
+                    preparedStatement.setDouble(i, (Double) entry.getValue());
                 }
-                s++;
+                i++;
             }
             data.clear();
             preparedStatement.executeUpdate();

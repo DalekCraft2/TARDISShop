@@ -35,8 +35,8 @@ public class ShopItemGetter {
                 return weepingAngelsApi.getK9();
             } else {
                 // Monster head
-                String m = item.toString().replace("_HEAD", "");
-                Monster monster = Monster.valueOf(m);
+                String monsterName = item.toString().replace("_HEAD", "");
+                Monster monster = Monster.valueOf(monsterName);
                 return weepingAngelsApi.getHead(monster);
             }
         }
@@ -44,8 +44,8 @@ public class ShopItemGetter {
     }
 
     public static ItemStack getSeedItem(ShopItem item) {
-        String s = item.toString().replace("_SEED", "");
-        return TARDISShopPlugin.getTardisApi().getTARDISSeedItem(s);
+        String schematic = item.toString().replace("_SEED", "");
+        return TARDISShopPlugin.getTardisApi().getTARDISSeedItem(schematic);
     }
 
     public static ItemStack getShapeItem(ShopItem item, Player player) {

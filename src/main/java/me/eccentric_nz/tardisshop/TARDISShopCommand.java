@@ -41,12 +41,12 @@ import java.util.List;
 public class TARDISShopCommand extends TARDISCompleter implements CommandExecutor, TabCompleter {
 
     private final TARDISShopPlugin plugin;
-    private final ImmutableList<String> ROOT_SUBS = ImmutableList.of("add", "remove", "update");
-    private final ArrayList<String> ITEM_SUBS;
+    private final ImmutableList<String> rootSubs = ImmutableList.of("add", "remove", "update");
+    private final ArrayList<String> itemSubs;
 
     public TARDISShopCommand(TARDISShopPlugin plugin) {
         this.plugin = plugin;
-        ITEM_SUBS = new ArrayList<>(this.plugin.getItemsConfig().getKeys(false));
+        itemSubs = new ArrayList<>(this.plugin.getItemsConfig().getKeys(false));
     }
 
     @Override
@@ -118,16 +118,16 @@ public class TARDISShopCommand extends TARDISCompleter implements CommandExecuto
     }
 
     @Override
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
         // Remember that we can return null to default to online player name matching
         String lastArg = args[args.length - 1];
 
         if (args.length <= 1) {
-            return partial(args[0], ROOT_SUBS);
+            return partial(args[0], rootSubs);
         } else if (args.length == 2) {
             String sub = args[0];
             if (sub.equalsIgnoreCase("add")) {
-                return partial(lastArg, ITEM_SUBS);
+                return partial(lastArg, itemSubs);
             }
         }
         return ImmutableList.of();
