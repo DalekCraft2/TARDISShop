@@ -79,7 +79,7 @@
             <!-- VaultAPI -->
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
-            <version>1.7</version>
+            <version>1.7.1</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -110,14 +110,6 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <!-- Apache Maven Javadoc Plugin -->
-            <name>Apache Snapshots</name>
-            <id>apache-snapshots</id>
-            <url>https://repository.apache.org/snapshots/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <build>
         <finalName>${project.name}-${project.version}</finalName>
@@ -170,7 +162,7 @@
                 <!-- Attach Javadocs -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.3.1-SNAPSHOT</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
